@@ -17,7 +17,6 @@ app.whenReady().then(() => {
     createWindow()
 })
 
-
 function incrementTimer() {
     if (timerIsOn == "on") {
         if (seconds < 10) {
