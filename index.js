@@ -1,5 +1,6 @@
 var _a = require('electron'), app = _a.app, BrowserWindow = _a.BrowserWindow;
 var path = require('path');
+var interv;
 var createWindow = function () {
     var win = new BrowserWindow({
         width: 800,
@@ -34,11 +35,12 @@ function incrementTimer() {
 function runTimer() {
     timerIsOn = 'on';
     if (timerIsOn == 'on' && seconds <= 0) {
-        var interv = setInterval(incrementTimer, 1000);
+        interv = setInterval(incrementTimer, 1000);
     }
 }
 function pause() {
     timerIsOn = 'off';
+    clearInterval(interv);
 }
 function resetTimer() {
     seconds = 0;

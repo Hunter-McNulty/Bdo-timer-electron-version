@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 
 const path = require('path')
+let interv;
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -37,12 +38,13 @@ function incrementTimer() {
 function runTimer() {
     timerIsOn = 'on';
     if (timerIsOn == 'on' && seconds <= 0) {
-        let interv = setInterval(incrementTimer, 1000);
+        interv = setInterval(incrementTimer, 1000);
     }
 }
-// reseting while paused makes it bug out
+
 function pause() {
     timerIsOn = 'off';
+    clearInterval(interv);
 }
 
 function resetTimer() {
