@@ -1,15 +1,30 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron');
+const express = require('express');
+const router = express.Router();
 
 const path = require('path')
 //timer still bugs out after restarting it
+
+
+router.get('/', (req, res) => {
+    res.send(express.static('/'))
+})
+
+
+
+
+
+
+
+
+
+
+
 
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
-        webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
-    }
 })
     win.loadFile('index.html')
 }
@@ -38,7 +53,8 @@ function incrementTimer() {
 function runTimer() {
     timerIsOn = 'on';
     if (timerIsOn == 'on' && seconds <= 0) {
-        setInterval(incrementTimer, 1000);
+        let interv = setInterval(incrementTimer, 1000);
+        clearInterval(interv);
     }
 }
 
@@ -50,5 +66,7 @@ function resetTimer() {
     timerIsOn = 'off';
     seconds = 0;
     tens = 0;
-    minutes = 0; 
+    minutes = 0;
+    timer.innerHTML = `${minutes}:${tens}${seconds}`;
+    console.log('hi');
 }
