@@ -34,15 +34,15 @@ function incrementTimer() {
 function runTimer() {
     timerIsOn = 'on';
     if (timerIsOn == 'on' && seconds <= 0) {
-        setInterval(incrementTimer, 1000);
+        var interv = setInterval(incrementTimer, 1000);
     }
 }
 function pause() {
     timerIsOn = 'off';
 }
 function resetTimer() {
-    timerIsOn = 'off';
     seconds = 0;
     tens = 0;
     minutes = 0;
+    timer.innerHTML = "".concat(minutes, ":").concat(tens).concat(seconds);
 }

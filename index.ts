@@ -1,7 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 
 const path = require('path')
-//timer still bugs out after restarting it
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -38,17 +37,17 @@ function incrementTimer() {
 function runTimer() {
     timerIsOn = 'on';
     if (timerIsOn == 'on' && seconds <= 0) {
-        setInterval(incrementTimer, 1000);
+        let interv = setInterval(incrementTimer, 1000);
     }
 }
-
+// reseting while paused makes it bug out
 function pause() {
     timerIsOn = 'off';
 }
 
 function resetTimer() {
-    timerIsOn = 'off';
     seconds = 0;
     tens = 0;
-    minutes = 0; 
+    minutes = 0;
+    timer.innerHTML = `${minutes}:${tens}${seconds}`;
 }
