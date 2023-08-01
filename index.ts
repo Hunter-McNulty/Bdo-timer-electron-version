@@ -12,6 +12,7 @@ const createWindow = () => {
     }
 })
     win.loadFile('index.html')
+    win.removeMenu();
 }
 app.whenReady().then(() => {
     createWindow()
@@ -44,10 +45,10 @@ function runTimer() {
 
 function pause() {
     timerIsOn = 'off';
-    clearInterval(interv);
 }
 
 function resetTimer() {
+    clearInterval(interv);
     seconds = 0;
     tens = 0;
     minutes = 0;
